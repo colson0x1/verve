@@ -1,0 +1,19 @@
+{
+  "name": "verve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colson0x1/verve.git"
+  },
+  "author": "Colson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colson0x1/verve/issues"
+  },
+  "homepage": "https://github.com/colson0x1/verve#readme"
+}
