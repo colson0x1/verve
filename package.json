@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:db": "json-server -w db.json",
+    "start:parcel": "npx parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/colson0x1/verve/issues"
   },
-  "homepage": "https://github.com/colson0x1/verve#readme"
+  "homepage": "https://github.com/colson0x1/verve#readme",
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
 }
