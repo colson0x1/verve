@@ -1,9 +1,11 @@
 import { User } from './models/User';
 
-const user = new User({ id: 13, name: 'Madison Square Garden', age: 40 });
+const user = User.buildUser({
+  id: 4,
+});
 
-user.on('save', () => {
+user.on('change', () => {
   console.log(user);
 });
 
-user.save();
+user.fetch();
