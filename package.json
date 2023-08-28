@@ -12,7 +12,7 @@
     "url": "git+https://github.com/colson0x1/verve.git"
   },
   "author": "Colson",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/colson0x1/verve/issues"
   },
