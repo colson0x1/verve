@@ -1,35 +1,49 @@
-# Verve Framework Documentation
+# Verve Framework - Docs
 
 **Version:** 1.0.0  
 **Author:** Colson
 
-Welcome to the official documentation for the Verve Framework. Verve is a client-side web framework designed to streamline data fetching, rendering content, handling user interactions, and persisting data on backend servers. This documentation provides a comprehensive guide on how to use and implement the Verve Framework, along with real code examples.
+Welcome to the official documentation for the **Verve Framework**. Verve is a client-side web framework designed to streamline data fetching, rendering content, handling user interactions, and persisting data on backend servers. This documentation provides a comprehensive guide on how to use and implement the Verve Framework, along with real code examples.
 
 ## Table of Contents
 
-- [Verve Framework Documentation](#verve-framework-documentation)
+- [Verve Framework - Docs](#verve-framework---docs)
   - [Table of Contents](#table-of-contents)
   - [1. Introduction ](#1-introduction-)
-  - [2. Getting Started ](#2-getting-started-)
-  - [3. Components ](#3-components-)
+  - [2. Inspiration](#2-inspiration)
+  - [3. Getting Started ](#3-getting-started-)
+  - [4. Components ](#4-components-)
     - [Model ](#model-)
     - [View ](#view-)
     - [Collection ](#collection-)
-  - [4. Example Usage ](#4-example-usage-)
+  - [5. Example Usage ](#5-example-usage-)
     - [Fetching Data and Rendering ](#fetching-data-and-rendering-)
     - [Updating Data ](#updating-data-)
     - [Displaying User Details ](#displaying-user-details-)
-  - [5. Getting Started ](#5-getting-started-)
-  - [6. License ](#6-license-)
-  - [Screenshots of an Example App](#screenshots-of-an-example-app)
+  - [6. Getting Started ](#6-getting-started-)
+  - [7. License ](#7-license-)
+  - [8. Screenshots of an Example App](#8-screenshots-of-an-example-app)
     - [Verve - Example app rendering user with updates features](#verve---example-app-rendering-user-with-updates-features)
     - [Verve - Example app rendering data from the JSON Server](#verve---example-app-rendering-data-from-the-json-server)
+  - [9. Code Walkthrough - ToDo App](#9-code-walkthrough---todo-app)
+    - [Verve TODO App - Features](#verve-todo-app---features)
+    - [Verve ToDo App - Culmination](#verve-todo-app---culmination)
 
 ## 1. Introduction <a name="introduction"></a>
 
-Verve is a powerful client-side web framework built to simplify the development of dynamic web applications. It provides a structured approach to fetching data, rendering content, and managing user interactions, all while offering a clean and intuitive API. Whether you're building a small application or a complex web system, Verve is designed to help you achieve your goals efficiently and effectively.
+**Verve** is a powerful client-side web framework built to simplify the development of dynamic web applications. It provides a structured approach to fetching data, rendering content, and managing user interactions, all while offering a clean and intuitive API. Whether you're building a small application or a complex web system, Verve is designed to help you achieve your goals efficiently and effectively.
 
-## 2. Getting Started <a name="getting-started"></a>
+## 2. Inspiration
+
+Verve draws its design philosophy and core concepts from two prominent frameworks in the JavaScript landscape: Backbone JS and Marionette JS. These frameworks have served as the wellspring of inspiration for numerous architectural decisions and functional aspects within Verve.
+
+- **Backbone JS:** Verve's underpinning model structure and data management mechanism owe a debt to the principles championed by Backbone JS. The elegant organization of data and the orchestration of interactions within Backbone have fundamentally shaped the core capabilities of Verve's model components.
+
+- **Marionette JS:** By building upon the solid foundation of Backbone, Verve also takes inspiration from Marionette JS, an extension that simplifies and enriches the development of Backbone applications. Verve's view class hierarchy and sophisticated handling of user interactions reflect the well-crafted paradigms encapsulated in Marionette.
+
+The harmonious integration of insights from both Backbone and Marionette has significantly contributed to shaping Verve into a comprehensive, sophisticated framework tailored to crafting dynamic client-side web applications.
+
+## 3. Getting Started <a name="getting-started"></a>
 
 To get started with Verve, follow these steps:
 
@@ -41,7 +55,7 @@ To get started with Verve, follow these steps:
 
 4. **Start the Application:** Run `npm run start:parcel` to start the development server and launch the application in your browser.
 
-## 3. Components <a name="components"></a>
+## 4. Components <a name="components"></a>
 
 ### Model <a name="model"></a>
 
@@ -107,7 +121,7 @@ users.on('change', () => {
 users.fetch();
 ```
 
-## 4. Example Usage <a name="example-usage"></a>
+## 5. Example Usage <a name="example-usage"></a>
 
 ### Fetching Data and Rendering <a name="fetching-data-and-rendering"></a>
 
@@ -154,7 +168,7 @@ const userShow = new UserShow(document.getElementById('user-details'), user);
 userShow.render();
 ```
 
-## 5. Getting Started <a name="getting-started"></a>
+## 6. Getting Started <a name="getting-started"></a>
 
 To begin using the Verve framework in your project, follow these steps:
 
@@ -166,16 +180,356 @@ To begin using the Verve framework in your project, follow these steps:
 
 4. **Start the Application:** Run `npm run start:parcel` to start the development server and launch the application in your browser.
 
-## 6. License <a name="license"></a>
+## 7. License <a name="license"></a>
 
 Verve is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
 
-## Screenshots of an Example App
+## 8. Screenshots of an Example App
 
 ### Verve - Example app rendering user with updates features
 ![Verve - Example app rendering user with updates features](https://i.imgur.com/unbMuN5.png)
 
 ### Verve - Example app rendering data from the JSON Server
 ![Verve - Example app rendering data from the JSON Server](https://i.imgur.com/GTyqJQe.png)
+
+---
+
+## 9. Code Walkthrough - ToDo App
+
+Welcome to the Verve TODO App Code Walkthrough! In this section, we'll delve into the key components of the Verve framework and their application in building a functional TODO app. This showcase highlights how Verve's features come together to create a seamless user experience.
+
+### Verve TODO App - Features
+
+1. **Task List Display:**
+   - The app displays a list of tasks on the screen.
+   - Each task is represented by a checkbox, the task title, and a delete button.
+
+2. **Toggle Task Completion:**
+   - Users can toggle the completion status of each task by clicking on the checkbox.
+   - Completed tasks are visually distinguished from incomplete tasks.
+
+3. **Delete Tasks:**
+   - Users can delete tasks by clicking on the "Delete" button associated with each task.
+   - Deleted tasks are removed from the list.
+
+4. **Create New Tasks:**
+   - The app allows users to create new tasks.
+   - Users can enter the title of the new task in an input field and click the "Create Task" button to add it to the list.
+
+5. **Real-Time Updates:**
+   - The task list updates in real-time when tasks are created, completed, or deleted.
+   - Changes are automatically reflected on the screen without the need to refresh the page.
+
+6. **Interactive UI:**
+   - The user interface provides an interactive and user-friendly experience.
+   - Visual cues such as checkboxes and buttons make it clear how users can interact with the app.
+
+7. **Model-View Separation:**
+   - The app follows the Model-View-Controller (MVC) pattern using the Verve framework.
+   - Models represent the data (tasks), views handle the UI, and controllers manage the application logic.
+
+8. **Framework Utilization:**
+   - The app demonstrates the usage of the Verve framework to create models, views, and collections.
+   - Models encapsulate task data and logic, while views handle rendering and user interactions.
+
+9. **API Interaction:**
+   - The app interacts with a JSON server API to fetch, update, and delete task data.
+   - Tasks are stored and managed on the server, allowing for data persistence.
+
+10. **Code Modularity:**
+    - The app's codebase is organized into separate modules for models, views, and the main application logic.
+    - This modular structure promotes code reusability and maintainability.
+
+11. **User-Friendly Interface:**
+    - The user interface is clear, intuitive, and minimalistic.
+    - Users can easily understand and interact with the tasks without any complexity.
+
+12. **JSON Server Integration:**
+    - The app integrates with JSON server to simulate a back-end API for task data management.
+    - JSON server allows for tasks to be created, updated, and deleted, providing a realistic data interaction experience.
+
+13. **Component Reusability:**
+    - Views are designed as reusable components that can be easily extended for other purposes.
+    - This architecture encourages the development of additional features without significant code duplication.
+
+These features collectively create a functional and user-friendly TODO app built using the Verve framework. The app effectively showcases the framework's capabilities, including data management, real-time updates, and user interaction handling.
+
+Building a complete and fully functional TODO app from scratch involves several steps. I'll guide you through the process step by step, including the code snippets for each component. This example will provide a deeper understanding of how the Verve framework works. Let's get started:
+
+1. **Setting Up the Project:**
+
+Create a new directory for your project and navigate into it:
+
+```bash
+mkdir verve-todo-app
+cd verve-todo-app
+```
+
+Initialize a new Node.js project and install the required dependencies:
+
+```bash
+npm init -y
+npm install axios
+```
+
+2. **Creating the Files:**
+
+Inside the project directory, create the following files and directories:
+
+```
+verve-todo-app/
+  ├── src/
+  │    ├── models/
+  │    │    ├── Task.ts
+  │    │    ├── TaskList.ts
+  │    ├── views/
+  │    │    ├── View.ts
+  │    │    ├── TaskView.ts
+  │    │    ├── TaskListView.ts
+  │    │    ├── CreateTaskView.ts
+  │    ├── index.ts
+  │    ├── index.html
+  ├── package.json
+  ├── db.json
+  ├── README.md
+```
+
+3. **Defining the Models:**
+
+**`Task.ts` Model:**
+
+```typescript
+// src/models/Task.ts
+
+import { Model } from './Model';
+
+export interface TaskProps {
+  id?: number;
+  title: string;
+  completed: boolean;
+}
+
+const rootUrl = 'http://localhost:3000/tasks';
+
+export class Task extends Model<TaskProps> {
+  static buildTask(attrs: TaskProps): Task {
+    return new Task(attrs);
+  }
+
+  toggleCompleted(): void {
+    const completed = !this.get('completed');
+    this.set({ completed });
+    this.save();
+  }
+}
+```
+
+**`TaskList.ts` Collection:**
+
+```typescript
+// src/models/TaskList.ts
+
+import { Collection } from './Collection';
+import { Task, TaskProps } from './Task';
+
+export class TaskList extends Collection<Task, TaskProps> {
+  constructor() {
+    super(rootUrl, (json: TaskProps) => Task.buildTask(json));
+  }
+}
+```
+
+4. **Creating Views:**
+
+**`View.ts` Base View:**
+
+```typescript
+// src/views/View.ts
+
+export abstract class View<T> {
+  constructor(public parent: Element, public model: T) {}
+
+  abstract template(): string;
+
+  render(): void {
+    this.parent.innerHTML = this.template();
+  }
+}
+```
+
+**`TaskView.ts` View for Individual Task:**
+
+```typescript
+// src/views/TaskView.ts
+
+import { View } from './View';
+import { Task, TaskProps } from '../models/Task';
+
+export class TaskView extends View<Task> {
+  template(): string {
+    const checked = this.model.get('completed') ? 'checked' : '';
+    return `
+      <div>
+        <input type="checkbox" ${checked} />
+        <span>${this.model.get('title')}</span>
+        <button class="delete-button">Delete</button>
+      </div>
+    `;
+  }
+
+  eventsMap(): { [key: string]: () => void } {
+    return {
+      'click:input': this.onCheckboxClick,
+      'click:.delete-button': this.onDeleteClick,
+    };
+  }
+
+  onCheckboxClick = (): void => {
+    this.model.toggleCompleted();
+  };
+
+  onDeleteClick = (): void => {
+    this.model.destroy();
+  };
+}
+```
+
+**`TaskListView.ts` CollectionView for Task List:**
+
+```typescript
+// src/views/TaskListView.ts
+
+import { CollectionView } from './CollectionView';
+import { Task, TaskProps } from '../models/Task';
+import { TaskView } from './TaskView';
+
+export class TaskListView extends CollectionView<Task, TaskProps> {
+  renderItem(model: Task, itemParent: Element): void {
+    new TaskView(itemParent, model).render();
+  }
+}
+```
+
+**`CreateTaskView.ts` View for Creating Tasks:**
+
+```typescript
+// src/views/CreateTaskView.ts
+
+import { View } from './View';
+import { TaskList } from '../models/TaskList';
+
+export class CreateTaskView extends View<TaskList> {
+  template(): string {
+    return `
+      <div>
+        <input type="text" placeholder="Enter task title" />
+        <button class="create-button">Create Task</button>
+      </div>
+    `;
+  }
+
+  eventsMap(): { [key: string]: () => void } {
+    return {
+      'click:.create-button': this.onCreateClick,
+    };
+  }
+
+  onCreateClick = (): void => {
+    const input = this.parent.querySelector('input') as HTMLInputElement;
+    const title = input.value.trim();
+
+    if (title) {
+      this.model.create({ title, completed: false });
+      input.value = '';
+    }
+  };
+}
+```
+
+5. **Setting Up the Application:**
+
+**`index.ts` Implementation:**
+
+```typescript
+// src/index.ts
+
+import { TaskList } from './models/TaskList';
+import { TaskListView } from './views/TaskListView';
+import { CreateTaskView } from './views/CreateTaskView';
+
+const tasks = new TaskList();
+const root = document.getElementById('root');
+
+if (root) {
+  tasks.on('change', () => {
+    new TaskListView(root, tasks).render();
+  });
+
+  new CreateTaskView(root, tasks).render();
+  tasks.fetch();
+}
+```
+
+**`index.html` Entry Point:**
+
+```html
+<!-- src/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verve TODO App</title>
+  </head>
+  <body>
+    <h1>TODO App</h1>
+    <div id="root"></div>
+    <script src="./src/index.ts"></script>
+  </body>
+</html>
+```
+
+6. **Populating `db.json`:**
+
+Ensure that you have the following content in your `db.json` file:
+
+```json
+{
+  "tasks": [
+    { "id": 1, "title": "Buy groceries", "completed": false },
+    { "id": 2, "title": "Read a book", "completed": true },
+    { "id": 3, "title": "Go for a run", "completed": false }
+  ]
+}
+```
+
+7. **Run the App:**
+
+Open two terminal windows:
+
+In the first terminal, start the JSON server:
+
+```bash
+npx json-server --watch db.json
+```
+
+In the second terminal, start the application:
+
+```bash
+npx parcel src/index.html
+```
+
+This will start the development server and open the app in your browser. You can now create tasks, toggle their completion status, and delete tasks.
+
+---
+
+### Verve ToDo App - Culmination
+
+In **summation**, the culmination of this developmental odyssey, crafting a refined and fully operational TODO application via the Verve framework, not only underscores the meticulous attention to detail but also illuminates the expanse of capabilities the framework holds in its arsenal. The symphony of features—dynamic real-time updates, judicious separation of models and views, and seamless API interactions—paints a vivid picture of the framework's prowess in orchestrating user-centric, interactive digital experiences.
+
+Through the meticulous orchestration of tasks, from toggling completion states to crafting new entries with effortless finesse, we've effectively harnessed the latent potential within the Verve framework. The modular architecture, an embodiment of our discerning coding practices, resonates with the framework's capacity to streamline intricate development paradigms.
+
+As we momentarily recede to survey the tapestry of accomplishments this endeavor has woven, the Verve framework emerges as an unequivocal catalyst for realizing the synergy between functionality and sophistication. The intrinsic adaptability of the framework unleashes the gates to a realm of boundless prospects, rendering it the quintessential toolkit for shaping solutions that seamlessly accommodate the kaleidoscope of contemporary web development requisites. Our expedition through the construct of this TODO application stands testament to the framework's faculty in translating conceptual blueprints into elegantly robust digital landscapes.
