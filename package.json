@@ -1,11 +1,17 @@
 {
   "name": "verve",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
+  "description": "Verve - A dynamic client-side web framework for streamlined data handling, interactive rendering, and user-focused web applications.",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
     "start:db": "json-server -w db.json",
-    "start:parcel": "npx parcel index.html"
+    "start:parcel": "npx parcel index.html",
+    "clean": "del ./build/*",
+    "build": "npm run clean && tsc"
   },
   "repository": {
     "type": "git",
@@ -19,5 +25,25 @@
   "homepage": "https://github.com/colson0x1/verve#readme",
   "dependencies": {
     "axios": "^1.4.0"
-  }
+  },
+  "devDependencies": {
+    "del-cli": "^5.1.0"
+  },
+  "keywords": [
+    "web framework",
+    "frontend",
+    "web apps",
+    "ui",
+    "library",
+    "javascript",
+    "typescript",
+    "ui library",
+    "framework",
+    "ui framework",
+    "react alternative",
+    "web development",
+    "user interface",
+    "component based",
+    "web application"
+  ]
 }
