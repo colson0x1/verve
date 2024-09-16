@@ -1,5 +1,5 @@
 {
-  "name": "verve",
+  "name": "cols-verve",
   "version": "1.0.0",
   "description": "Verve - A dynamic client-side web framework for streamlined data handling, interactive rendering, and user-focused web applications.",
   "main": "./build/index.js",
