@@ -1,9 +1,9 @@
-# Verve Framework - Docs
+# Verve Framework (@ cols-verve)- Docs
 
 **Version:** 1.0.0  
 **Author:** Colson
 
-Welcome to the official documentation for the **Verve Framework**. Verve is a client-side web framework designed to streamline data fetching, rendering content, handling user interactions, and persisting data on backend servers. This documentation provides a comprehensive guide on how to use and implement the Verve Framework, along with real code examples.
+Welcome to the official documentation for the **Verve Framework (cols-verve)**. Verve is a client-side web framework designed to streamline data fetching, rendering content, handling user interactions, and persisting data on backend servers. This documentation provides a comprehensive guide on how to use and implement the Verve Framework, along with real code examples.
 
 ## Table of Contents
 
@@ -16,11 +16,28 @@ Welcome to the official documentation for the **Verve Framework**. Verve is a cl
     - [Model ](#model-)
     - [View ](#view-)
     - [Collection ](#collection-)
-  - [5. Example Usage ](#5-example-usage-)
-    - [Fetching Data and Rendering ](#fetching-data-and-rendering-)
-    - [Updating Data ](#updating-data-)
-    - [Displaying User Details ](#displaying-user-details-)
-  - [6. Getting Started ](#6-getting-started-)
+  - [5. Getting Started ](#5-getting-started-)
+  - [**6. Library Overview** ](#6-library-overview-)
+    - [**@ Available Types**](#-available-types)
+    - [1. `HasId`](#1-hasid)
+    - [2. `UserProps`](#2-userprops)
+    - [**@ Exported Modules**](#-exported-modules)
+    - [1. **Models**](#1-models)
+      - [`Model`](#model)
+      - [`ApiSync`](#apisync)
+      - [`Attributes`](#attributes)
+      - [`Collection`](#collection)
+      - [`Eventing`](#eventing)
+    - [2. **Views**](#2-views)
+      - [`View`](#view)
+      - [`CollectionView`](#collectionview)
+      - [`UserEdit`](#useredit)
+      - [`UserForm`](#userform)
+      - [`UserList`](#userlist)
+      - [`UserShow`](#usershow)
+    - [**Implementation Showcase**](#implementation-showcase)
+      - [Updating Data ](#updating-data-)
+      - [Displaying User Details ](#displaying-user-details-)
   - [7. License ](#7-license-)
   - [8. Screenshots of an Example App](#8-screenshots-of-an-example-app)
     - [Verve - Example app rendering user with updates features](#verve---example-app-rendering-user-with-updates-features)
@@ -68,7 +85,7 @@ import { Model } from './models/Model';
 const user = new Model<UserProps>(
   new Attributes<UserProps>({ name: 'John', age: 25 }),
   new Eventing(),
-  new ApiSync<UserProps>('http://localhost:3000/users')
+  new ApiSync<UserProps>('http://localhost:3000/users'),
 );
 
 // Fetch data from the server
@@ -111,7 +128,7 @@ import { Collection } from './models/Collection';
 
 const users = new Collection<User, UserProps>(
   'http://localhost:3000/users',
-  (json: UserProps) => User.buildUser(json)
+  (json: UserProps) => User.buildUser(json),
 );
 
 users.on('change', () => {
@@ -121,9 +138,246 @@ users.on('change', () => {
 users.fetch();
 ```
 
+## 5. Getting Started <a name="getting-started"></a>
+
+To begin using the Verve framework in your project, follow these steps:
+
+1. **Clone the Repository:** Begin by cloning the [Verve GitHub repository](https://github.com/colson0x1/verve.git) to your local machine.
+
+2. **Install Dependencies:** Navigate to the project directory and run `npm install` to install the required dependencies.
+
+3. **Start the Development Server:** Run `npm run start:db` to start the JSON server for testing data.
+
+4. **Start the Application:** Run `npm run start:parcel` to start the development server and launch the application in your browser.
+
+## **6. Library Overview** <a name="library-overview"></a>
+
+Verve provides a collection of classes and interfaces that facilitate the development of sophisticated web applications. Below is a detailed description of the available exports and types from the Verve library.
+
+### **@ Available Types**
+
+### 1. `HasId`
+
+An interface representing an entity that can have an optional identifier.
+
+```typescript
+export interface HasId {
+  id?: number;
+}
+```
+
+### 2. `UserProps`
+
+An interface defining the properties of a `User` object.
+
+```typescript
+export interface UserProps {
+  id?: number;
+  name?: string;
+  age?: number;
+}
+```
+
+### **@ Exported Modules**
+
+### 1. **Models**
+
+#### `Model`
+
+A base class for creating models with attributes, events, and synchronization capabilities.
+
+```typescript
+export class Model<T extends HasId> {
+  constructor(
+    private attributes: ModelAttributes<T>,
+    private events: Events,
+    private sync: Sync<T>,
+  ) {}
+
+  on(eventName: string, callback: () => void): void;
+  trigger(eventName: string): void;
+  get<K extends keyof T>(key: K): T[K];
+  set(update: T): void;
+  fetch(): void;
+  save(): void;
+}
+```
+
+#### `ApiSync`
+
+A class for synchronizing data with a REST API.
+
+```typescript
+export class ApiSync<T extends HasId> {
+  constructor(public rootUrl: string) {}
+
+  fetch(id: number): AxiosPromise;
+  save(data: T): AxiosPromise;
+}
+```
+
+#### `Attributes`
+
+A class for managing model attributes.
+
+```typescript
+export class Attributes<T extends object> {
+  constructor(private data: T) {}
+
+  get<K extends keyof T>(key: K): T[K];
+  set(update: T): void;
+  getAll(): T;
+}
+```
+
+#### `Collection`
+
+A class for managing a collection of models.
+
+```typescript
+export class Collection<T, K> {
+  models: T[] = [];
+  events: Eventing = new Eventing();
+
+  constructor(
+    public rootUrl: string,
+    public deserialize: (json: K) => T,
+  ) {}
+
+  on(eventName: string, callback: () => void): void;
+  trigger(eventName: string): void;
+  fetch(): void;
+}
+```
+
+#### `Eventing`
+
+A class for managing events and listeners.
+
+```typescript
+export class Eventing {
+  on(eventName: string, callback: () => void): void;
+  trigger(eventName: string): void;
+}
+```
+
+### 2. **Views**
+
+#### `View`
+
+An abstract class for creating views that bind to a model and render UI.
+
+```typescript
+export abstract class View<T extends Model<K>, K extends HasId> {
+  constructor(
+    public parent: Element,
+    public model: T,
+  ) {}
+
+  abstract template(): string;
+
+  regionsMap(): { [key: string]: string };
+  eventsMap(): { [key: string]: () => void };
+  bindModel(): void;
+  bindEvents(fragment: DocumentFragment): void;
+  mapRegions(fragment: DocumentFragment): void;
+  onRender(): void;
+  render(): void;
+}
+```
+
+#### `CollectionView`
+
+An abstract class for rendering a collection of models.
+
+```typescript
+export abstract class CollectionView<T, K> {
+  constructor(
+    public parent: Element,
+    public collection: Collection<T, K>,
+  ) {}
+
+  abstract renderItem(model: T, itemParent: Element): void;
+  render(): void;
+}
+```
+
+#### `UserEdit`
+
+A view class for editing user details.
+
+```typescript
+export class UserEdit extends View<User, UserProps> {
+  regionsMap(): { [key: string]: string };
+  onRender(): void;
+  template(): string;
+}
+```
+
+#### `UserForm`
+
+A view class for rendering a user form.
+
+```typescript
+export class UserForm extends View<User, UserProps> {
+  eventsMap(): { [key: string]: () => void };
+  onSaveClick(): void;
+  onSetNameClick(): void;
+  onSetAgeClick(): void;
+  template(): string;
+}
+```
+
+#### `UserList`
+
+A view class for rendering a list of users.
+
+```typescript
+export class UserList extends CollectionView<User, UserProps> {
+  renderItem(model: User, itemParent: Element): void;
+}
+```
+
+#### `UserShow`
+
+A view class for displaying user details.
+
+```typescript
+export class UserShow extends View<User, UserProps> {
+  template(): string;
+}
+```
+
+### **Implementation Showcase**
+
+Here is a simple example of how to use the Verve library to display a list of users:
+
+```typescript
+import { Collection } from 'verve';
+import { User, UserProps } from 'verve';
+import { UserList } from 'verve';
+
+const users = new Collection<User, UserProps>(
+  'http://localhost:3000/users',
+  (json: UserProps) => User.buildUser(json),
+);
+
+users.on('change', () => {
+  const root = document.getElementById('root');
+
+  if (root) {
+    new UserList(root, users).render();
+  }
+});
+
+users.fetch();
+```
+
+````
+
 ## 5. Example Usage <a name="example-usage"></a>
 
-### Fetching Data and Rendering <a name="fetching-data-and-rendering"></a>
+#### Fetching Data and Rendering <a name="fetching-data-and-rendering"></a>
 
 ```typescript
 import { Collection } from './models/Collection';
@@ -137,9 +391,9 @@ users.on('change', () => {
 });
 
 users.fetch();
-```
+````
 
-### Updating Data <a name="updating-data"></a>
+#### Updating Data <a name="updating-data"></a>
 
 ```typescript
 import { UserEdit } from './views/UserEdit';
@@ -156,7 +410,7 @@ if (root) {
 }
 ```
 
-### Displaying User Details <a name="displaying-user-details"></a>
+#### Displaying User Details <a name="displaying-user-details"></a>
 
 ```typescript
 import { UserShow } from './views/UserShow';
@@ -168,18 +422,6 @@ const userShow = new UserShow(document.getElementById('user-details'), user);
 userShow.render();
 ```
 
-## 6. Getting Started <a name="getting-started"></a>
-
-To begin using the Verve framework in your project, follow these steps:
-
-1. **Clone the Repository:** Begin by cloning the [Verve GitHub repository](https://github.com/colson0x1/verve.git) to your local machine.
-
-2. **Install Dependencies:** Navigate to the project directory and run `npm install` to install the required dependencies.
-
-3. **Start the Development Server:** Run `npm run start:db` to start the JSON server for testing data.
-
-4. **Start the Application:** Run `npm run start:parcel` to start the development server and launch the application in your browser.
-
 ## 7. License <a name="license"></a>
 
 Verve is licensed under the [MIT License](https://opensource.org/licenses/MIT).
@@ -189,9 +431,11 @@ Verve is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 ## 8. Screenshots of an Example App
 
 ### Verve - Example app rendering user with updates features
+
 ![Verve - Example app rendering user with updates features](https://i.imgur.com/unbMuN5.png)
 
 ### Verve - Example app rendering data from the JSON Server
+
 ![Verve - Example app rendering data from the JSON Server](https://i.imgur.com/GTyqJQe.png)
 
 ---
@@ -203,50 +447,62 @@ Welcome to the Verve TODO App Code Walkthrough! In this section, we'll delve int
 ### Verve TODO App - Features
 
 1. **Task List Display:**
+
    - The app displays a list of tasks on the screen.
    - Each task is represented by a checkbox, the task title, and a delete button.
 
 2. **Toggle Task Completion:**
+
    - Users can toggle the completion status of each task by clicking on the checkbox.
    - Completed tasks are visually distinguished from incomplete tasks.
 
 3. **Delete Tasks:**
+
    - Users can delete tasks by clicking on the "Delete" button associated with each task.
    - Deleted tasks are removed from the list.
 
 4. **Create New Tasks:**
+
    - The app allows users to create new tasks.
    - Users can enter the title of the new task in an input field and click the "Create Task" button to add it to the list.
 
 5. **Real-Time Updates:**
+
    - The task list updates in real-time when tasks are created, completed, or deleted.
    - Changes are automatically reflected on the screen without the need to refresh the page.
 
 6. **Interactive UI:**
+
    - The user interface provides an interactive and user-friendly experience.
    - Visual cues such as checkboxes and buttons make it clear how users can interact with the app.
 
 7. **Model-View Separation:**
+
    - The app follows the Model-View-Controller (MVC) pattern using the Verve framework.
    - Models represent the data (tasks), views handle the UI, and controllers manage the application logic.
 
 8. **Framework Utilization:**
+
    - The app demonstrates the usage of the Verve framework to create models, views, and collections.
    - Models encapsulate task data and logic, while views handle rendering and user interactions.
 
 9. **API Interaction:**
+
    - The app interacts with a JSON server API to fetch, update, and delete task data.
    - Tasks are stored and managed on the server, allowing for data persistence.
 
 10. **Code Modularity:**
+
     - The app's codebase is organized into separate modules for models, views, and the main application logic.
     - This modular structure promotes code reusability and maintainability.
 
 11. **User-Friendly Interface:**
+
     - The user interface is clear, intuitive, and minimalistic.
     - Users can easily understand and interact with the tasks without any complexity.
 
 12. **JSON Server Integration:**
+
     - The app integrates with JSON server to simulate a back-end API for task data management.
     - JSON server allows for tasks to be created, updated, and deleted, providing a realistic data interaction experience.
 
@@ -349,7 +605,10 @@ export class TaskList extends Collection<Task, TaskProps> {
 // src/views/View.ts
 
 export abstract class View<T> {
-  constructor(public parent: Element, public model: T) {}
+  constructor(
+    public parent: Element,
+    public model: T,
+  ) {}
 
   abstract template(): string;
 
@@ -477,7 +736,7 @@ if (root) {
 ```html
 <!-- src/index.html -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
