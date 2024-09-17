@@ -1,7 +1,7 @@
 {
-  "name": "cols-verve",
+  "name": "verve-nexus",
   "version": "1.0.0",
-  "description": "Verve - A dynamic client-side web framework for streamlined data handling, interactive rendering, and user-focused web applications.",
+  "description": "Verve Nexus - A dynamic client-side web framework for streamlined data handling, interactive rendering, and user-focused web applications.",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -30,6 +30,8 @@
     "del-cli": "^5.1.0"
   },
   "keywords": [
+    "verve",
+    "verve nexus",
     "web framework",
     "frontend",
     "web apps",
