@@ -1,6 +1,6 @@
 # Verve Framework (@ verve-nexus NPM)- Docs
 
-**Version:** 1.0.2  
+**Version:** 1.0.3  
 **Author:** Colson  
 **Framework:** Verve Nexus  
 **NPM:** [verve-nexus](https://www.npmjs.com/package/verve-nexus)
@@ -548,7 +548,7 @@ npm init -y
 Install the required packages:
 
 ```bash
-npm install typescript webpack webpack-cli ts-loader verve
+npm install typescript webpack webpack-cli ts-loader verve-nexus
 npm install --save-dev webpack-dev-server
 ```
 
