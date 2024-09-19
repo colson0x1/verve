@@ -1,9 +1,9 @@
 # Verve Framework (@ verve-nexus NPM)- Docs
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Author:** Colson  
 **Framework:** Verve Nexus  
-**NPM:** [verve-nexus](https://www.npmjs.com/package/verve-nexus)  
+**NPM:** [verve-nexus](https://www.npmjs.com/package/verve-nexus)
 
 Welcome to the official documentation for the **Verve Framework (verve-nexus)**. Verve is a client-side web framework designed to streamline data fetching, rendering content, handling user interactions, and persisting data on backend servers. This documentation provides a comprehensive guide on how to use and implement the Verve Framework, along with real code examples.
 
