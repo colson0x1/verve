@@ -1,6 +1,6 @@
 # Verve Framework (@ verve-nexus NPM)- Docs
 
-**Version:** 1.0.1  
+**Version:** 1.0.2  
 **Author:** Colson  
 **Framework:** Verve Nexus  
 **NPM:** [verve-nexus](https://www.npmjs.com/package/verve-nexus)
@@ -38,8 +38,10 @@ Welcome to the official documentation for the **Verve Framework (verve-nexus)**.
       - [`UserList`](#userlist)
       - [`UserShow`](#usershow)
     - [**Implementation Showcase**](#implementation-showcase)
-      - [Updating Data ](#updating-data-)
-      - [Displaying User Details ](#displaying-user-details-)
+  - [5. Example Usage ](#5-example-usage-)
+    - [Fetching Data and Rendering ](#fetching-data-and-rendering-)
+    - [Updating Data ](#updating-data-)
+    - [Displaying User Details ](#displaying-user-details-)
   - [7. License ](#7-license-)
   - [8. Screenshots of an Example App](#8-screenshots-of-an-example-app)
     - [Verve - Example app rendering user with updates features](#verve---example-app-rendering-user-with-updates-features)
@@ -417,8 +419,6 @@ users.on('change', () => {
 users.fetch();
 ```
 
-````
-
 ## 5. Example Usage <a name="example-usage"></a>
 
 #### Fetching Data and Rendering <a name="fetching-data-and-rendering"></a>
@@ -435,7 +435,7 @@ users.on('change', () => {
 });
 
 users.fetch();
-````
+```
 
 #### Updating Data <a name="updating-data"></a>
 

@@ -1,6 +1,6 @@
 {
   "name": "verve-nexus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Verve Nexus - A dynamic client-side web framework for streamlined data handling, interactive rendering, and user-focused web applications.",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
